@@ -61,7 +61,7 @@ jobs:
               run: make download -j$(nproc)
 
             - name: Build firmware images
-              run: make -j$(($(nproc)+1))
+              run: make -j$(($(nproc)+1)) V=s
 
             - name: Pack packages
               run:  tar cvfz bin/ipq807x.tar.gz -C bin/targets/qualcommax/ipq807x .
