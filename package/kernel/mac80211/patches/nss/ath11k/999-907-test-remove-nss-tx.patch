@@ -1,0 +1,14 @@
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6505,10 +6505,7 @@ static void ath11k_mac_tx(struct ieee802
+ 	    test_bit(ATH11K_FLAG_MONITOR_VDEV_CREATED, &ar->monitor_flags))
+ 		skb_cb->flags |= ATH11K_SKB_TX_STATUS;
+ 
+-	if (ar->ab->nss.enabled)
+-		ret = ath11k_nss_tx(arvif, skb);
+-	else
+-		ret = ath11k_dp_tx(ar, arvif, arsta, skb);
++	ret = ath11k_dp_tx(ar, arvif, arsta, skb);
+ 
+ 	if (unlikely(ret)) {
+ 		if (!ar->ab->nss.enabled && ret != -ENOSPC && ret != -ENOMEM)
