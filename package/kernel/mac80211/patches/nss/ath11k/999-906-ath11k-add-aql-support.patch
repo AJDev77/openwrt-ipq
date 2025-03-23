@@ -5,7 +5,7 @@
  	u8 mac_id;
  	struct hal_wbm_release_ring *tx_status;
 +	bool mac_id_scheduled[MAX_RADIOS];
-+	int i;
++	int n;
  
  	spin_lock_bh(&status_ring->lock);
  
@@ -17,10 +17,10 @@
 +	}
 +
 +	/* Schedule remaining tx packets for the radio */
-+	for (i = 0; i < MAX_RADIOS; i++) {
-+		if (!mac_id_scheduled[i])
++	for (n = 0; n < MAX_RADIOS; n++) {
++		if (!mac_id_scheduled[n])
 +			continue;
-+		ar = ab->pdevs[i].ar;
++		ar = ab->pdevs[n].ar;
 +		ath11k_mac_tx_push_pending(ar);
  	}
  }
