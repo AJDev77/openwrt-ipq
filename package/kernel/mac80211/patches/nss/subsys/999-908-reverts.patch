@@ -1,0 +1,14 @@
+--- a/net/mac80211/tx.c
++++ b/net/mac80211/tx.c
+@@ -4913,11 +4913,6 @@ netdev_tx_t __ieee80211_subif_start_xmit
+ 	if (key && (!(key->flags & KEY_FLAG_UPLOADED_TO_HARDWARE)))
+ 		goto skip_offload;
+ 
+-	if (sdata->vif.type == NL80211_IFTYPE_AP) {
+-		ieee80211_8023_xmit_ap(sdata, dev, sta, key, skb, info_flags, ctrl_flags, cookie);
+-		goto out;
+-	}
+-
+ 	sk_pacing_shift_update(skb->sk, sdata->local->hw.tx_sk_pacing_shift);
+ tx_offload:
+ 	ieee80211_8023_xmit(sdata, dev, sta, key, skb, info_flags, ctrl_flags, cookie);
