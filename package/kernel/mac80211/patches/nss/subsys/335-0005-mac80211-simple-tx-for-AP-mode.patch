@@ -82,15 +82,3 @@ Signed-off-by: Aloka Dixit <quic_alokad@quicinc.com>
  netdev_tx_t ieee80211_subif_start_xmit_8023(struct sk_buff *skb,
  					    struct net_device *dev)
  {
-@@ -4830,6 +4891,11 @@ netdev_tx_t ieee80211_subif_start_xmit_8
- 	if (key && (!(key->flags & KEY_FLAG_UPLOADED_TO_HARDWARE)))
- 		goto skip_offload;
- 
-+	if (sdata->vif.type == NL80211_IFTYPE_AP) {
-+		ieee80211_8023_xmit_ap(sdata, dev, sta, key, skb);
-+		goto out;
-+	}
-+
- 	sk_pacing_shift_update(skb->sk, sdata->local->hw.tx_sk_pacing_shift);
- tx_offload:
- 	ieee80211_8023_xmit(sdata, dev, sta, key, skb);
