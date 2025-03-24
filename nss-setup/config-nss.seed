@@ -111,9 +111,8 @@ CONFIG_KERNEL_PREEMPT_NONE=y
 CONFIG_KERNEL_PREEMPT_NONE_BUILD=y
 
 # Reduce kernel module size
-# Disable unnecessary debugging for Wi-Fi driver.
-CONFIG_ATH11K_DEBUGFS_HTT_STATS=n
-CONFIG_ATH11K_DEBUGFS_STA=n
+CONFIG_ATH11K_DEBUGFS_HTT_STATS=y
+CONFIG_ATH11K_DEBUGFS_STA=y
 # Disables thermal throttling support for ath11k.
 CONFIG_ATH11K_THERMAL=n
 
